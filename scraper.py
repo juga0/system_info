@@ -63,7 +63,7 @@ def obtain_ip():
     ip = socket.gethostbyname(socket.gethostname())
     ip2 = socket.gethostbyname_ex(socket.gethostname())
     logger.debug('ip %s' % ip)
-    logger.debug('ip2 %s' % ip2)
+    # logger.debug('ip2 %s' % ip2)
     return ip
 
 
