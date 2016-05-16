@@ -50,6 +50,22 @@ def obtain_environ():
     logger.debug('environ %s' % environ)
     return environ
 
+
+def obtain_dir():
+    from os import listdir
+    ls = listdir('/app')
+    logger.debug('ls /app %s' % ls)
+    return obtain_dir
+
+
+def obtain_ip():
+    import socket
+    ip = socket.gethostbyname(socket.gethostname())
+    ip2 = socket.gethostbyname_ex(socket.gethostname())
+    logger.debug('ip %s' % ip)
+    logger.debug('ip2 %s' % ip2)
+    return ip
+
 def main():
     obtain_python_version()
     obtain_uname()
@@ -57,6 +73,8 @@ def main():
     obtain_user()
     obtain_home()
     obtain_environ()
+    obtain_dir()
+    obtain_ip()
 
 
 if __name__ == "__main__":
