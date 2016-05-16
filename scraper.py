@@ -66,6 +66,27 @@ def obtain_ip():
     logger.debug('ip2 %s' % ip2)
     return ip
 
+
+def obtain_public_ip():
+    from urllib2 import urlopen
+    from json import load
+    try:
+        my_ip = urlopen('http://ip.42.pl/raw').read()
+    except:
+        try:
+            my_ip = load(urlopen('http://jsonip.com'))['ip']
+        except:
+            try:
+                my_ip = load(urlopen('http://httpbin.org/ip'))['origin']
+            except:
+                try:
+                    my_ip = load(urlopen('https://api.ipify.org/?format=json'))['ip']
+                except:
+                    my_ip = None
+    logger.debug('public ip %s' % my_ip)
+    return my_ip
+
+
 def main():
     obtain_python_version()
     obtain_uname()
@@ -75,6 +96,7 @@ def main():
     obtain_environ()
     obtain_dir()
     obtain_ip()
+    obtain_public_ip()
 
 
 if __name__ == "__main__":
